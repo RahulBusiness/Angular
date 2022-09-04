@@ -1,0 +1,39 @@
+<div class="row mt-5">
+    <div class="col-md-4 mx-auto mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title fw-bolder mb-4">Login to your account!</h5>
+                <div class="btn-group" dropdown>
+                    <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                       {{loginDetails.role ? loginDetails.role.title : 'Select Role'}}<span class="caret"></span>
+                    </button>
+                    <ul *dropdownMenu class="dropdown-menu">
+                        <ng-container *ngFor="let role of roles; let i = index">
+                            <li (click)="loginDetails.role = role">
+                                <a class="dropdown-item">{{role.title}}</a>
+                            </li>
+                        </ng-container>
+                    </ul>
+                </div>
+                <div class="text-danger form-text fw-bolder" *ngIf="validation.role">Role is required</div>
+                <div class="my-3">
+                    <label class="form-label">Email address</label>
+                    <input type="email" [(ngModel)]="loginDetails.email" class="form-control">
+                    <div class="text-danger form-text fw-bolder" *ngIf="validation.email">Email is required</div>
+                </div>
+                <div class="mb-3 position-relative">
+                    <label class="form-label">Password</label>
+                    <input [type]="togglePassword ? 'password' : 'text'" [(ngModel)]="loginDetails.password" 
+                    class="form-control">
+                    <i class="fa-solid position-absolute" [ngClass]="togglePassword ? 'fa-eye' : 'fa-eye-slash'"
+                    (click)="togglePassword = !togglePassword" 
+                    style="top: 42px; right: 20px;"></i>
+                    <div class="text-danger form-text fw-bolder" *ngIf="validation.password">Password is required</div>
+                </div>
+                <button type="button" (click)="validateLogin()" class="btn btn-primary fw-bolder mt-4 w-100">
+                    {{isLoading ? 'Connecting....' : 'Login Now'}}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
