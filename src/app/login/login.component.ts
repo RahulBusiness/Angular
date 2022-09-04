@@ -11,9 +11,9 @@ export class LoginComponent implements OnInit {
 
   constructor(private user: UserService, private router: Router) { }
 
-  loginDetails: any = { email: "example@gmail.com", password: "admin123", role: ""};
-  validation: any = {email: false, password: false, role: false};
-  togglePassword: any = true; 
+  loginDetails: any = { email: "example@gmail.com", password: "admin123", role: "" };
+  validation: any = { email: false, password: false, role: false };
+  togglePassword: any = true;
   isLoading: any = false;
   roles: any = [
     {
@@ -29,21 +29,23 @@ export class LoginComponent implements OnInit {
       value: "student"
     }
   ]
-  ngOnInit(): void {}
+  ngOnInit(): void {  }
 
   // validate login through api
   validateLogin = () => {
     if (this.checkValidation()) {
       this.isLoading = !this.isLoading;
-      const request = {...this.loginDetails, role: this.loginDetails.role.value};
-      this.user.login(request, request.role).then((response) => {
-        setTimeout(() => {
-          this.isLoading = !this.isLoading;
-          if(response.flag) {
-            this.router.navigate(['/dashboard']);
-          }
-        }, 1200);
-      });
+      const request = { ...this.loginDetails, role: this.loginDetails.role.value };
+      this.router.navigate(['/dashboard']);
+
+      // this.user.login(request, request.role).then((response) => {
+      //   setTimeout(() => {
+      //     this.isLoading = !this.isLoading;
+      //     if(response.flag) {
+      //       this.router.navigate(['/dashboard']);
+      //     }
+      //   }, 1200);
+      // });
     }
   }
 

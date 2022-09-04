@@ -12,9 +12,9 @@ export class UserService {
   /**
    * User Login API
    */
-   async login(request: any, role: any): Promise<any> {
+  async login(request: any, role: any): Promise<any> {
     return this.http
-      .post(environment.apiUrl + '/'+ role + '/login', request)
+      .post(environment.apiUrl + '/' + role + '/login', request)
       .toPromise()
       .then((response: any) => {
         response['flag'] = (response['status'] === 200);

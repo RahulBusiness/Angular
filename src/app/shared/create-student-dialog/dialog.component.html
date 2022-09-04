@@ -1,0 +1,54 @@
+<div mat-dialog-content>
+    <form class="example-form row" [formGroup]="createStudentForm">
+        <mat-form-field class="example-full-width col-md-12 my-2" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput formControlName="name">
+            <mat-error *ngIf="createStudentForm.controls['name'].hasError('required')">
+                *Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width col-md-12 my-2" appearance="fill">
+            <mat-label>Code</mat-label>
+            <input type="email" matInput formControlName="code">
+            <mat-error *ngIf="createStudentForm.controls['code'].hasError('required')">
+                *Code is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width col-md-12 my-2" appearance="fill">
+            <mat-label>Batch</mat-label>
+            <input type="email" matInput formControlName="batch">
+            <mat-error *ngIf="createStudentForm.controls['batch'].hasError('required')">
+                *Batch is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width col-md-12 my-2" appearance="fill">
+            <mat-label>Contact No.</mat-label>
+            <input type="email" matInput formControlName="contactNo">
+            <mat-error *ngIf="createStudentForm.controls['contactNo'].hasError('required')">
+                *Contact No. is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width col-md-12 my-2" appearance="fill">
+            <mat-label>Programme</mat-label>
+            <mat-select formControlName="programmeName">
+                <mat-option *ngFor="let name of programmeNames" [value]="name">
+                    {{name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width col-md-12 my-2" appearance="fill">
+            <mat-label>Section</mat-label>
+            <input type="email" matInput formControlName="section">
+            <mat-error *ngIf="createStudentForm.controls['section'].hasError('required')">
+                *Section is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button color="primary" [mat-dialog-close]="createStudentForm.value" cdkFocusInitial
+        *ngIf="!isDataPresent()">Create</button>
+    <button mat-button color="primary" [mat-dialog-close]="createStudentForm.value" cdkFocusInitial
+        *ngIf="isDataPresent()">Edit</button>
+    <button mat-button (click)="onNoClick()">Close</button>
+</div>
